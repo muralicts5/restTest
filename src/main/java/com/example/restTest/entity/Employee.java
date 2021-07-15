@@ -9,7 +9,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
 
 import lombok.Data;
 
@@ -82,26 +87,26 @@ public class Employee {
 	}
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	//@Max(value=2000,message="please proper id")
+	@Max(value=2000,message="please proper id")
 	private int employeeId;
 	
-	//@NotEmpty(message="please enter username")
-	//@Pattern(regexp="[a-z]{4,6}", message="Please enter 4-6 small case character")
+	@NotEmpty(message="please enter username")
+	@Pattern(regexp="[a-z]{4,6}", message="Please enter 4-6 small case character")
 	private String name;
 	
 	//@DateTimeFormat(pattern="yyyy-MM-dd")
-	//@Past(message="please enter proper date of birth")
-	//@NotNull(message="please enter date of birth")
+	@Past(message="please enter proper date of birth")
+	@NotNull(message="please enter date of birth")
 	@Temporal(TemporalType.DATE)
 	private Date dob;
 	
 	private float salary;
 	
-	//@Email(message="please enter proper email")
-	//@NotEmpty(message="please enter email")
+	@Email(message="please enter proper email")
+	@NotEmpty(message="please enter email")
 	private String email;
 	
-	//@NotEmpty
+	@NotEmpty
 	private String designation;
 	
 }

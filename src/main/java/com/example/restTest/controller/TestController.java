@@ -1,6 +1,9 @@
 package com.example.restTest.controller;
 
 import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,10 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.restTest.entity.Employee;
+import com.example.restTest.exception.ErrorStatus;
 import com.example.restTest.service.EmployeeService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -33,8 +39,10 @@ public class TestController {
 	}
 
 	@GetMapping("/{id}")
-	public Employee	 getEmployeeById(@PathVariable("id") int id){
-		return employeeService.getEmployeeById(id);
+	public ResponseEntity<Employee>	 getEmployeeById(@PathVariable("id") int id){
+		Employee employee= employeeService.getEmployeeById(id);
+		return new ResponseEntity<Employee>(employee, HttpStatus.CREATED);
+
 	}
 
 
@@ -51,7 +59,7 @@ public class TestController {
 
 
 	@PostMapping
-	public Employee insertEmployee(@RequestBody  Employee employee){
+	public Employee insertEmployee(@RequestBody @Valid Employee employee){
 		return employeeService.insertEmployee(employee);
 	}
 

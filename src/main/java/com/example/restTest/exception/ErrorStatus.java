@@ -12,6 +12,14 @@ public class ErrorStatus {
 		this.timestamp = timestamp;
 	}
 
+	public int getErrorCode() {
+		return errorCode;
+	}
+
+	public void setErrorCode(int errorCode) {
+		this.errorCode = errorCode;
+	}
+
 	public String getMessage() {
 		return message;
 	}
@@ -31,6 +39,7 @@ public class ErrorStatus {
 		private Date timestamp;
 		  private String message;
 		  private String details;
+		  private int errorCode;
 		  
 		  public ErrorStatus(Date timestamp, String message, String details) {
 		    super();

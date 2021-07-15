@@ -20,6 +20,7 @@ public class EmployeeExceptionHandler {
 		System.out.println(e);
 		System.out.println("exception arthimetich/or common global handler");
 		ErrorStatus error = new ErrorStatus(new Date(), e.getMessage(), req.getRequestURI());
+		error.setErrorCode(67676);
 		return new ResponseEntity<ErrorStatus>(error, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
